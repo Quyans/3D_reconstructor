@@ -56,11 +56,11 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="10dp"
                         android:gravity="center_vertical"
-                        android:text="广州"
+                        android:text="北京"
                         android:textColor="@color/white"
                         android:textSize="15sp" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/tv_test_hint"
                         android:layout_width="0px"
                         android:layout_height="match_parent"
@@ -88,6 +88,9 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
+
+
     <!--suppress AndroidDomInspection -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -100,6 +103,11 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:orientation="vertical">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="test"/>
 
         </LinearLayout>
 

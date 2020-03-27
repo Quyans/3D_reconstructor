@@ -11,7 +11,16 @@
         android:id="@+id/vp_home_pager"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="1" />
+        android:layout_weight="1" >
+<!--        <Button-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="sdfaf"/>-->
+    </com.hjq.widget.layout.NoScrollViewPager>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0px"-->
+<!--        android:layout_weight="1"></LinearLayout>-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bv_home_navigation"

@@ -29,9 +29,8 @@ import com.hjq.demo.ui.dialog.MessageDialog;
 import com.hjq.demo.ui.dialog.ToastDialog;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
- *    time   : 2019/09/24
+ *    author : 曲延松
+ *    time   : 2020/01/11
  *    desc   : 基于 WebView 封装
  */
 public final class BrowserView extends WebView {

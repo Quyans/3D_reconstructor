@@ -2,21 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hjq.demo">
-
     <!-- 外部存储读写权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <!-- 拍照权限 -->
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <!-- 联网权限 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 访问网络状态 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 拍照权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 联网权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 访问网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
-    <!-- 安装包的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 安装包的权限 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
@@ -24,21 +16,18 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="false"
         android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="false"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
         tools:targetApi="n">
-
         <!-- 友盟多渠道（在 App Gradle 中配置，请不要在此处修改） -->
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="${channel}" />
-
-        <!-- 适配 Android 7.0 文件意图 -->
+            android:value="${channel}" /> <!-- 适配 Android 7.0 文件意图 -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -47,29 +36,21 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider>
-
-        <!-- 崩溃界面 -->
+        </provider> <!-- 崩溃界面 -->
         <activity
             android:name=".ui.activity.CrashActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
-            android:process=":crash"
-             />
-
-        <!-- 引导界面 -->
+            android:process=":crash" /> <!-- 引导界面 -->
         <activity
             android:name=".ui.activity.GuideActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
-            android:screenOrientation="fullSensor" />
-
-        <!-- 闪屏界面 -->
+            android:screenOrientation="fullSensor" /> <!-- 闪屏界面 -->
         <activity
             android:name=".ui.activity.SplashActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:launchMode="singleTop"
-           >
+            android:launchMode="singleTop">
 
             <!-- 程序入口 -->
             <intent-filter>
@@ -78,130 +59,81 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-
-        <!-- App 首页 -->
+        </activity> <!-- App 首页 -->
         <activity
             android:name=".ui.activity.HomeActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:launchMode="singleTask"
-            />
-
-        <!-- 登录界面 -->
+            android:launchMode="singleTask" /> <!-- 登录界面 -->
         <activity
             android:name=".ui.activity.LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:launchMode="singleTop"
-             />
-
-        <!-- 注册界面 -->
+            android:launchMode="singleTop" /> <!-- 注册界面 -->
         <activity
             android:name=".ui.activity.RegisterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:launchMode="singleTop"
-           />
-
-        <!-- 设置界面 -->
+            android:launchMode="singleTop" /> <!-- 设置界面 -->
         <activity
             android:name=".ui.activity.SettingActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/setting_title"
-            android:launchMode="singleTop"
-            />
-
-        <!-- 忘记密码 -->
+            android:launchMode="singleTop" /> <!-- 忘记密码 -->
         <activity
             android:name=".ui.activity.PasswordForgetActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/password_forget_title"
-            android:launchMode="singleTop"
-             />
-
-        <!-- 重置密码 -->
+            android:launchMode="singleTop" /> <!-- 重置密码 -->
         <activity
             android:name=".ui.activity.PasswordResetActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/password_reset_title"
-            android:launchMode="singleTop"
-             />
-
-        <!-- 手机号校验 -->
+            android:launchMode="singleTop" /> <!-- 手机号校验 -->
         <activity
             android:name=".ui.activity.PhoneVerifyActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/phone_verify_title"
-            android:launchMode="singleTop"
-             />
-
-        <!-- 手机号更换 -->
+            android:launchMode="singleTop" /> <!-- 手机号更换 -->
         <activity
             android:name=".ui.activity.PhoneResetActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/phone_reset_title"
-            android:launchMode="singleTop"
-             />
-
-        <!-- 关于我们 -->
+            android:launchMode="singleTop" /> <!-- 关于我们 -->
         <activity
             android:name=".ui.activity.AboutActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/about_title"
-            android:launchMode="singleTop"
-             />
-
-        <!-- 个人资料 -->
+            android:launchMode="singleTop" /> <!-- 个人资料 -->
         <activity
             android:name=".ui.activity.PersonalDataActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/personal_data_title"
-            android:launchMode="singleTop"
-             />
-
-        <!-- 浏览器 -->
+            android:launchMode="singleTop" /> <!-- 浏览器 -->
         <activity
             android:name=".ui.activity.BrowserActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/web_title"
-            android:launchMode="singleTop"
-            />
-
-        <!-- 图片选择 -->
+            android:launchMode="singleTop" /> <!-- 图片选择 -->
         <activity
             android:name=".ui.activity.PhotoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/photo_title"
-            android:launchMode="singleTop"
-            />
-
-        <!-- 拍照选择 -->
-        <activity android:name=".ui.activity.CameraActivity"
+            android:launchMode="singleTop" /> <!-- 拍照选择 -->
+        <activity
+            android:name=".ui.activity.CameraActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:launchMode="singleTop"
-            />
-
-        <!-- 查看大图 -->
+            android:launchMode="singleTop" /> <!-- 查看大图 -->
         <activity
             android:name=".ui.activity.ImageActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:launchMode="singleTop"
-          />
-
-        <!-- 对话框案例 -->
+            android:launchMode="singleTop" /> <!-- 对话框案例 -->
         <activity
             android:name=".ui.activity.DialogActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:launchMode="singleTop"
-           />
-
-        <!-- 状态案例 -->
+            android:launchMode="singleTop" /> <!-- 状态案例 -->
         <activity
             android:name=".ui.activity.StatusActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:launchMode="singleTop"
-           />
-
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>
