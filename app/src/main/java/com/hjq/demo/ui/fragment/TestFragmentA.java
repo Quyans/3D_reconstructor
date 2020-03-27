@@ -18,6 +18,7 @@ import butterknife.BindView;
  *    author : 曲延松
  *    time   : 2020/01/11
  *    desc   : 项目炫酷效果示例
+ *
  */
 public final class TestFragmentA extends MyFragment<HomeActivity>
         implements XCollapsingToolbarLayout.OnScrimsListener {
