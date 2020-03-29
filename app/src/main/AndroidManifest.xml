@@ -28,7 +28,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
         tools:targetApi="n">
-
+        <activity android:name=".ui.activity.AddComActivity" /> <!-- 动态添加组件Activity -->
         <activity android:name=".ui.activity.RebuildActivity" /> <!-- 友盟多渠道（在 App Gradle 中配置，请不要在此处修改） -->
         <meta-data
             android:name="UMENG_CHANNEL"

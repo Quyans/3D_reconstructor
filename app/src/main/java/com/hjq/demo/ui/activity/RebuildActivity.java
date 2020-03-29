@@ -36,9 +36,13 @@ public class RebuildActivity extends MyActivity {
                     @Override
                     public void onSelected(List<String> data) {
                         mImageView.setVisibility(View.VISIBLE);
-                        GlideApp.with(getActivity())
-                                .load(data.get(0))
-                                .into(mImageView);
+
+                        for (int i = 0;i<data.size();i++){
+                            GlideApp.with(getActivity())
+                                    .load(data.get(i))
+                                    .into(mImageView);
+                        }
+
                     }
 
                     @Override

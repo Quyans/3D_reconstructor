@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyFragment;
+import com.hjq.demo.ui.activity.AddComActivity;
 import com.hjq.demo.ui.activity.HomeActivity;
 import com.hjq.demo.ui.activity.RebuildActivity;
 import com.hjq.demo.widget.XCollapsingToolbarLayout;
@@ -41,7 +42,8 @@ public final class TestFragmentA extends MyFragment<HomeActivity>
     @BindView(R.id.btn_toBuild3D)
     Button mbtnToBuild;
     //访问文件Activity页面
-
+    @BindView(R.id.btn_add)
+    Button mbtnAdd;
 
     public static TestFragmentA newInstance() {
         return new TestFragmentA();
@@ -63,6 +65,13 @@ public final class TestFragmentA extends MyFragment<HomeActivity>
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), RebuildActivity.class);
+                startActivity(intent);
+            }
+        });
+        mbtnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddComActivity.class);
                 startActivity(intent);
             }
         });

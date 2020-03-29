@@ -10,8 +10,10 @@
 
 
     <ImageView
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:background="@drawable/bg_build_image"
         android:id="@+id/iv_build_img"/>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_rebuild_selectImg"
