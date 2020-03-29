@@ -1,5 +1,8 @@
 package com.hjq.demo.ui.fragment;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,6 +13,7 @@ import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyFragment;
 import com.hjq.demo.ui.activity.HomeActivity;
+import com.hjq.demo.ui.activity.RebuildActivity;
 import com.hjq.demo.widget.XCollapsingToolbarLayout;
 
 import butterknife.BindView;
@@ -34,6 +38,10 @@ public final class TestFragmentA extends MyFragment<HomeActivity>
     TextView mHintView;
     @BindView(R.id.iv_test_search)
     ImageView mSearchView;
+    @BindView(R.id.btn_toBuild3D)
+    Button mbtnToBuild;
+    //访问文件Activity页面
+
 
     public static TestFragmentA newInstance() {
         return new TestFragmentA();
@@ -51,6 +59,14 @@ public final class TestFragmentA extends MyFragment<HomeActivity>
 
         //设置渐变监听
         mCollapsingToolbarLayout.setOnScrimsListener(this);
+        mbtnToBuild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), RebuildActivity.class);
+                startActivity(intent);
+            }
+        });
+//
     }
 
     @Override
@@ -90,4 +106,6 @@ public final class TestFragmentA extends MyFragment<HomeActivity>
             getStatusBarConfig().statusBarDarkFont(false).init();
         }
     }
+
+
 }
