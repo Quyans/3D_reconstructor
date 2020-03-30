@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
@@ -24,7 +27,10 @@ public class RebuildActivity extends MyActivity {
     ImageView mImageView;
     @BindView(R.id.gv_build)
     GridView mGridView;
-
+    @BindView(R.id.fl_build)
+    FrameLayout mFrameLayout;
+    @BindView(R.id.btn_rebuild_upload)
+    Button mBtnUpload;
 
 
     @Override
@@ -34,25 +40,33 @@ public class RebuildActivity extends MyActivity {
 
     @Override
     protected void initView() {
-//        GridViewAdapter gridViewAdapter = new GridViewAdapter(10,);
-//        mGridView.setAdapter();
 
-        mImageView = findViewById(R.id.iv_build_img);
+//        mImageView = findViewById(R.id.iv_build_img);
         mBtnSelectImg = findViewById(R.id.btn_rebuild_selectImg);
         mBtnSelectImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PhotoActivity.start(getActivity(),2, new PhotoActivity.OnPhotoSelectListener() {
+                PhotoActivity.start(getActivity(),9, new PhotoActivity.OnPhotoSelectListener() {
 
                     @Override
                     public void onSelected(List<String> data) {
-                        mImageView.setVisibility(View.VISIBLE);
+                        //设置imageView
+//                        mImageView.setVisibility(View.VISIBLE);
+//                        GlideApp.with(getActivity())
+//                                .load(data.get(0))
+//                                .into(mImageView);
 
-                        for (int i = 0;i<data.size();i++){
-                            GlideApp.with(getActivity())
-                                    .load(data.get(i))
-                                    .into(mImageView);
-                        }
+                        //设置展示frame的padding
+                        mFrameLayout.setPadding(30,30,30,30);
+                        //设置上传按钮
+                        mBtnUpload.setEnabled(true);
+
+
+
+                        //在这里动态加载item
+                        GridViewAdapter gridViewAdapter = new GridViewAdapter(RebuildActivity.this,data);
+                        mGridView.setAdapter(gridViewAdapter);
+
 
                     }
 

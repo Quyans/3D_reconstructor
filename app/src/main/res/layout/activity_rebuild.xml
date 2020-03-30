@@ -14,23 +14,36 @@
         android:layout_height="wrap_content">
 
        <LinearLayout
+           android:layout_marginTop="20dp"
            android:orientation="vertical"
            android:layout_width="match_parent"
            android:layout_height="match_parent">
-           <GridView
-               android:id="@+id/gv_build"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:numColumns="3"
-               android:horizontalSpacing="10dp"
-               android:verticalSpacing="10dp"
-               />
-           <ImageView
-               android:layout_marginTop="20dp"
+
+
+
+           <FrameLayout
+               android:id="@+id/fl_build"
                android:layout_width="match_parent"
-               android:layout_height="200dp"
-               android:background="@drawable/bg_build_image"
-               android:id="@+id/iv_build_img"/>
+               android:layout_height="wrap_content"
+               android:background="@drawable/bg_build_image">
+
+               <GridView
+                   android:id="@+id/gv_build"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:numColumns="3"
+                   android:horizontalSpacing="10dp"
+                   android:verticalSpacing="10dp"
+                   />
+
+           </FrameLayout>
+
+<!--           <ImageView-->
+<!--               android:layout_marginTop="20dp"-->
+<!--               android:layout_width="match_parent"-->
+<!--               android:layout_height="200dp"-->
+<!--               android:background="@drawable/bg_build_image"-->
+<!--               android:id="@+id/iv_build_img"/>-->
            <androidx.appcompat.widget.AppCompatButton
                android:id="@+id/btn_rebuild_selectImg"
                style="@style/ButtonStyle"
@@ -38,6 +51,14 @@
                android:layout_height="wrap_content"
                android:layout_marginTop="30dp"
                android:text="选择图片" />
+           <androidx.appcompat.widget.AppCompatButton
+               android:id="@+id/btn_rebuild_upload"
+               style="@style/ButtonStyle"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="30dp"
+               android:enabled="false"
+               android:text="上传图片" />
        </LinearLayout>
 
     </ScrollView>
