@@ -4,10 +4,10 @@
     android:layout_height="match_parent">
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none" >
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:scrollbars="none" >-->
 
         <LinearLayout
             android:id="@+id/content_view"
@@ -59,6 +59,6 @@
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+<!--    </ScrollView>-->
 
 </LinearLayout>
