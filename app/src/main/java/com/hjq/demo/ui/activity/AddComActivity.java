@@ -1,28 +1,48 @@
 package com.hjq.demo.ui.activity;
 
 import android.app.Activity;
+
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.function.Function;
 
 import android.os.Bundle;
 
 import android.graphics.Color;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import com.hjq.demo.action.ToastAction;
+import com.hjq.demo.http.OkHttp.RequestManager;
 
-public class AddComActivity extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+public class AddComActivity extends MyActivity {
     // 外围的LinearLayout容器
     private LinearLayout llContentView;
 
@@ -38,190 +58,149 @@ public class AddComActivity extends AppCompatActivity {
     private int iETContentHeight = 0;   // EditText控件高度
     private float fDimRatio = 1.0f; // 尺寸比例（实际尺寸/xml文件里尺寸）
 
+
+    //http请求
+    private String url = "testGet/";
+    private OkHttpClient okHttpClient;
+
+
+
+    /**
+     * Http请求测试
+     */
+    private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+    private static final String TAG = "OkHttp3";
+    private Button mBtn_submit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcom);
 
-        initCtrl();
-    }
-
-    
-
-    /**
-     * 初始化控件
-     */
-    private void initCtrl()
-    {
-        llContentView = (LinearLayout) this.findViewById(R.id.content_view);
-        etContent1 = (EditText) this.findViewById(R.id.et_content1);
-        listIBTNAdd = new LinkedList<ImageButton>();
-        listIBTNDel = new LinkedList<ImageButton>();
-
-        // “+”按钮（第一个）
-        ImageButton ibtnAdd1 = (ImageButton) this.findViewById(R.id.ibn_add1);
-        ibtnAdd1.setOnClickListener(new View.OnClickListener() {
-
+        mBtn_submit = findViewById(R.id.btn_submit);
+        mBtn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 获取尺寸变化比例
-                iETContentHeight = etContent1.getHeight();
-                fDimRatio = iETContentHeight / 80;
+//                toast("我是吐司");
+////                String json0 = bowlingJson("Jesse", "Jake");
+//
+//
+//
+//                JSONObject json = new JSONObject();
+//                try {
+//                    json.put("userid", "test1");
+//                    json.put("username", "name1");
+//                    json.put("usersex", 3);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//                //1. 创建OkhttpClient 对象
+//                OkHttpClient client = new OkHttpClient();
+//                RequestBody body = RequestBody.create(JSON, String.valueOf(json));
+////                Log.i("Json文件",String.valueOf(body));
+//                //2. 创建请求的Request 对象
+//                Request request = new Request.Builder()
+//                        .url(url)
+//                        .get()
+//                        .build();
+//
+//                //3. 在Okhttp中创建Call 对象，将request和Client进行绑定
+//                Call call = client.newCall(request);
+//                //4. 执行Call对象（call 是interface 实际执行的是RealCall）中的 `enqueue`方法
+//                call.enqueue(new Callback() {
+//                    @Override
+//                    public void onFailure(Call call, IOException e) {
+//                        toast("失败");
+////                        Toast.makeText(AddComActivity.this,"failure",Toast.LENGTH_LONG);
+//                        Log.i(TAG, e.toString());
+//                    }
+//
+//                    @Override
+//                    public void onResponse(Call call, Response response) throws IOException {
+////                        toast(response.body().string());
+////                        Toast.makeText(AddComActivity.this,"success",Toast.LENGTH_LONG);
+//                        Log.i(TAG, response.body().string());
+//                    }
+//                });
 
-                addContent(v);
+//                /**
+//                 * 测试OkHttp工具类_post
+//                 */
+//                RequestManager requestManager = new RequestManager(AddComActivity.this);
+//
+//                HashMap hashMap = new HashMap();
+//                hashMap.put("name","name1");
+//                hashMap.put("sex","1");
+//                hashMap.put("id","id2");
+//                requestManager.requestAsyn(url,1,hashMap,new RequestManager.ReqCallBack(){
+//                    @Override
+//                    public void onReqSuccess(Object result) {
+//                        Log.i(TAG, result.toString());
+//                    }
+//
+//                    @Override
+//                    public void onReqFailed(String errorMsg) {
+//                        Log.i(TAG, errorMsg.toString());
+//                    }
+//                } );
+
+                RequestManager requestManager = new RequestManager(AddComActivity.this);
+
+                HashMap hashMap = new HashMap();
+                hashMap.put("name","name1");
+                hashMap.put("sex","1");
+                hashMap.put("id","id2");
+                requestManager.requestAsyn(url,0,hashMap,new RequestManager.ReqCallBack(){
+                    @Override
+                    public void onReqSuccess(Object result) {
+                        Log.i(TAG, "success!!!!");
+                        Log.i(TAG, result.toString());
+                    }
+
+                    @Override
+                    public void onReqFailed(String errorMsg) {
+                        Log.i(TAG, "wrong!!!!!!");
+                        Log.i(TAG, errorMsg);
+                    }
+                } );
+
+
+
             }
         });
 
-        listIBTNAdd.add(ibtnAdd1);
-        listIBTNDel.add(null);  // 第一组隐藏了“-”按钮，所以为null
+
     }
 
-    /**
-     * 添加一组新控件
-     * @param v 事件触发控件，其实就是触发添加事件对应的“+”按钮
-     */
-    private void addContent(View v) {
-        if (v == null) {
-            return;
-        }
-
-        // 判断第几个“+”按钮触发了事件
-        int iIndex = -1;
-        for (int i = 0; i < listIBTNAdd.size(); i++) {
-            if (listIBTNAdd.get(i) == v) {
-                iIndex = i;
-                break;
-            }
-        }
-
-        if (iIndex >= 0) {
-            // 控件实际添加位置为当前触发位置点下一位
-            iIndex += 1;
-
-            // 开始添加控件
-
-            // 1.创建外围LinearLayout控件
-            LinearLayout layout = new LinearLayout(AddComActivity.this);
-            LinearLayout.LayoutParams lLayoutlayoutParams = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            // 设置margin
-            lLayoutlayoutParams.setMargins(0, (int) (fDimRatio * 5), 0, 0);
-            layout.setLayoutParams(lLayoutlayoutParams);
-            // 设置属性
-            layout.setBackgroundColor(Color.argb(255, 162, 205, 90));   // #FFA2CD5A
-            layout.setPadding((int) (fDimRatio * 5), (int) (fDimRatio * 5),
-                    (int) (fDimRatio * 5), (int) (fDimRatio * 5));
-            layout.setOrientation(LinearLayout.VERTICAL);
-
-            // 2.创建内部EditText控件
-            EditText etContent = new EditText(AddComActivity.this);
-            LinearLayout.LayoutParams etParam = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, iETContentHeight);
-            etContent.setLayoutParams(etParam);
-            // 设置属性
-            etContent.setBackgroundColor(Color.argb(255, 255, 255, 255));   // #FFFFFFFF
-            etContent.setGravity(Gravity.LEFT);
-            etContent.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-            etContent.setPadding((int) (fDimRatio * 5), 0, 0, 0);
-            etContent.setTextSize(16);
-            // 将EditText放到LinearLayout里
-            layout.addView(etContent);
-
-            // 3.创建“+”和“-”按钮外围控件RelativeLayout
-            RelativeLayout rlBtn = new RelativeLayout(AddComActivity.this);
-            RelativeLayout.LayoutParams rlParam = new RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-//          rlParam.setMargins(0, (int) (fDimRatio * 5), 0, 0);
-            rlBtn.setPadding(0, (int) (fDimRatio * 5), 0, 0);
-            rlBtn.setLayoutParams(rlParam);
-
-            // 4.创建“+”按钮
-            ImageButton btnAdd = new ImageButton(AddComActivity.this);
-            RelativeLayout.LayoutParams btnAddParam = new RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            // 靠右放置
-            btnAddParam.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            btnAdd.setLayoutParams(btnAddParam);
-            // 设置属性
-            btnAdd.setBackgroundResource(R.drawable.bg_build_image);
-            btnAdd.setId(btnIDIndex);
-            // 设置点击操作
-            btnAdd.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    addContent(v);
-                }
-            });
-            // 将“+”按钮放到RelativeLayout里
-            rlBtn.addView(btnAdd);
-            listIBTNAdd.add(iIndex, btnAdd);
-
-            // 5.创建“-”按钮
-            ImageButton btnDelete = new ImageButton(AddComActivity.this);
-            btnDelete.setBackgroundResource(R.drawable.bg_build_image);
-            RelativeLayout.LayoutParams btnDeleteAddParam = new RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            btnDeleteAddParam.setMargins(0, 0, (int) (fDimRatio * 5), 0);
-            // “-”按钮放在“+”按钮左侧
-            btnDeleteAddParam.addRule(RelativeLayout.LEFT_OF, btnIDIndex);
-            btnDelete.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    deleteContent(v);
-                }
-            });
-            // 将“-”按钮放到RelativeLayout里
-            rlBtn.addView(btnDelete, btnDeleteAddParam);
-            listIBTNDel.add(iIndex, btnDelete);
-
-            // 6.将RelativeLayout放到LinearLayout里
-            layout.addView(rlBtn);
-
-            // 7.将layout同它内部的所有控件加到最外围的llContentView容器里
-            llContentView.addView(layout, iIndex);
-
-            btnIDIndex++;
-        }
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_addcom;
     }
 
-    /**
-     * 删除一组控件
-     * @param v 事件触发控件，其实就是触发删除事件对应的“-”按钮
-     */
-    private void deleteContent(View v) {
-        if (v == null) {
-            return;
-        }
+    @Override
+    protected void initView() {
 
-        // 判断第几个“-”按钮触发了事件
-        int iIndex = -1;
-        for (int i = 0; i < listIBTNDel.size(); i++) {
-            if (listIBTNDel.get(i) == v) {
-                iIndex = i;
-                break;
-            }
-        }
-        if (iIndex >= 0) {
-            listIBTNAdd.remove(iIndex);
-            listIBTNDel.remove(iIndex);
-
-            // 从外围llContentView容器里删除第iIndex控件
-            llContentView.removeViewAt(iIndex);
-        }
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }  */
+    @Override
+    protected void initData() {
 
+    }
+
+    String bowlingJson(String player1, String player2) {
+
+
+
+        return "{'winCondition':'HIGH_SCORE',"
+                + "'name':'Bowling',"
+                + "'players':["
+                + "{'name':'" + player1 + "','history':[10,8,6,7,8],'color':-13388315,'total':39},"
+                + "{'name':'" + player2 + "','history':[6,10,5,10,10],'color':-48060,'total':41}"
+                + "]}";
+    }
 }
+
+
+
 

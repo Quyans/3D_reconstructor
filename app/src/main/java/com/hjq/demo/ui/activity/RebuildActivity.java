@@ -60,9 +60,6 @@ public class RebuildActivity extends MyActivity {
                         mFrameLayout.setPadding(30,30,30,30);
                         //设置上传按钮
                         mBtnUpload.setEnabled(true);
-
-
-
                         //在这里动态加载item
                         GridViewAdapter gridViewAdapter = new GridViewAdapter(RebuildActivity.this,data);
                         mGridView.setAdapter(gridViewAdapter);

@@ -3,62 +3,68 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_submit"
+        android:text="提交给后台"/>
+    
 <!--    <ScrollView-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="match_parent"-->
 <!--        android:scrollbars="none" >-->
 
-        <LinearLayout
-            android:id="@+id/content_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:isScrollContainer="true"
-            android:orientation="vertical"
-            android:padding="10.0dp" >
+<!--        <LinearLayout-->
+<!--            android:id="@+id/content_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:isScrollContainer="true"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="10.0dp" >-->
 
-            <LinearLayout
-                android:id="@+id/ll_one"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="#FFA2CD5A"
-                android:orientation="vertical"
-                android:padding="5dp" >
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_one"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:background="#FFA2CD5A"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="5dp" >-->
 
-                <EditText
-                    android:id="@+id/et_content1"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dip"
-                    android:background="#FFFFFFFF"
-                    android:gravity="left"
-                    android:inputType="textMultiLine"
-                    android:paddingLeft="5dp"
-                    android:textSize="16sp" />
+<!--                <EditText-->
+<!--                    android:id="@+id/et_content1"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="80dip"-->
+<!--                    android:background="#FFFFFFFF"-->
+<!--                    android:gravity="left"-->
+<!--                    android:inputType="textMultiLine"-->
+<!--                    android:paddingLeft="5dp"-->
+<!--                    android:textSize="16sp" />-->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp" >
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="5dp" >-->
 
-                    <ImageButton
-                        android:id="@+id/ibn_add1"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentRight="true"
-                        android:background="@drawable/bg_build_image" />
-                    <!--
-                                        <ImageButton
-                                            android:id="@+id/ibn_del1"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginRight="10dip"
-                                            android:layout_toLeftOf="@id/ibn_add1"
-                                            android:background="@drawable/ic_delete" />
-                     -->
-                </RelativeLayout>
-            </LinearLayout>
-        </LinearLayout>
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/ibn_add1"-->
+<!--                        android:layout_width="20dp"-->
+<!--                        android:layout_height="20dp"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:background="@drawable/bg_build_image" />-->
+<!--                    &lt;!&ndash;-->
+<!--                                        <ImageButton-->
+<!--                                            android:id="@+id/ibn_del1"-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_marginRight="10dip"-->
+<!--                                            android:layout_toLeftOf="@id/ibn_add1"-->
+<!--                                            android:background="@drawable/ic_delete" />-->
+<!--                     &ndash;&gt;-->
+<!--                </RelativeLayout>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
 <!--    </ScrollView>-->
 
 </LinearLayout>

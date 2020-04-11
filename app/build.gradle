@@ -4,7 +4,12 @@ apply from: "../config.gradle"
 
 android {
 
-
+    //需要添加下面这段代码
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
     defaultConfig {
 
         // 无痛修改包名：https://www.jianshu.com/p/17327e191d2e
@@ -177,6 +182,10 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
     // SmartRefreshLayout 刷新样式集合库
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
+
+    //okHttp
+    implementation 'com.squareup.okhttp:okhttp:2.7.5'
+    implementation 'com.squareup.okio:okio:1.11.0'
 
     // 侧滑框架：https://github.com/luckybilly/SmartSwipe
     implementation 'com.billy.android:smart-swipe:1.1.2'

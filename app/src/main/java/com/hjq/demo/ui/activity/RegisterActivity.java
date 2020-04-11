@@ -99,6 +99,7 @@ public final class RegisterActivity extends MyActivity {
                 }
 
                 // 获取验证码
+
                 EasyHttp.post(this)
                         .api(new GetCodeApi()
                         .setPhone(mPhoneView.getText().toString()))

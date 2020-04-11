@@ -27,6 +27,7 @@ public class GridViewAdapter extends BaseAdapter {
         mLayoutInflater = LayoutInflater.from(context);
         this.data = data;
         this.count = data.size();
+        System.out.println(this.count);
     }
 
     static class ViewHolder{

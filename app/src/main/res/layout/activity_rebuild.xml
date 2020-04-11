@@ -24,7 +24,7 @@
            <FrameLayout
                android:id="@+id/fl_build"
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
+               android:layout_height="200dp"
                android:background="@drawable/bg_build_image">
 
                <GridView
