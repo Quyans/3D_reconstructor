@@ -58,12 +58,9 @@ public class AddComActivity extends MyActivity {
     private int iETContentHeight = 0;   // EditText控件高度
     private float fDimRatio = 1.0f; // 尺寸比例（实际尺寸/xml文件里尺寸）
 
-
     //http请求
-    private String url = "testGet/";
+    private String url;
     private OkHttpClient okHttpClient;
-
-
 
     /**
      * Http请求测试
@@ -80,6 +77,10 @@ public class AddComActivity extends MyActivity {
         mBtn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /**
+                 * 原生的okHTTP
+                 */
 //                toast("我是吐司");
 ////                String json0 = bowlingJson("Jesse", "Jake");
 //
@@ -124,9 +125,10 @@ public class AddComActivity extends MyActivity {
 //                    }
 //                });
 
-//                /**
-//                 * 测试OkHttp工具类_post
-//                 */
+                /**
+                 * 测试OkHttp工具类_post
+                 */
+//                url =  "OkHttp/";
 //                RequestManager requestManager = new RequestManager(AddComActivity.this);
 //
 //                HashMap hashMap = new HashMap();
@@ -145,13 +147,34 @@ public class AddComActivity extends MyActivity {
 //                    }
 //                } );
 
-                RequestManager requestManager = new RequestManager(AddComActivity.this);
 
-                HashMap hashMap = new HashMap();
-                hashMap.put("name","name1");
-                hashMap.put("sex","1");
-                hashMap.put("id","id2");
-                requestManager.requestAsyn(url,0,hashMap,new RequestManager.ReqCallBack(){
+                /**
+                 * 测试get并加参数
+                 */
+//                url =  "testGet/";
+//                RequestManager requestManager = new RequestManager(AddComActivity.this);
+//
+//                HashMap hashMap = new HashMap();
+//                hashMap.put("name","name1");
+//                hashMap.put("sex","1");
+//                hashMap.put("id","id2");
+//                requestManager.requestAsyn(url,0,hashMap,new RequestManager.ReqCallBack(){
+//                    @Override
+//                    public void onReqSuccess(Object result) {
+//                        Log.i(TAG, "success!!!!");
+//                        Log.i(TAG, result.toString());
+//                    }
+//
+//                    @Override
+//                    public void onReqFailed(String errorMsg) {
+//                        Log.i(TAG, "wrong!!!!!!");
+//                        Log.i(TAG, errorMsg);
+//                    }
+//                } );
+
+                url =  "user/findUserAll/";
+                RequestManager requestManager = new RequestManager(AddComActivity.this);
+                requestManager.requestAsyn(url,0,new HashMap(),new RequestManager.ReqCallBack(){
                     @Override
                     public void onReqSuccess(Object result) {
                         Log.i(TAG, "success!!!!");
@@ -164,7 +187,6 @@ public class AddComActivity extends MyActivity {
                         Log.i(TAG, errorMsg);
                     }
                 } );
-
 
 
             }
