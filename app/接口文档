@@ -1,0 +1,179 @@
+# 接口文档
+
+负责人：曲岩松
+
+## 0
+* baseurl : /api/
+* 所有日期时间如无特殊说明 格式为ISO 8601:
+  ```
+  YYYY-MM-DDTHH:MM:SSZ
+  ```
+* 返回形式：
+  ```
+  {
+  "status":200,
+  "message":"OK",
+  "data":...
+  }
+  ```
+
+  status类型：
+
+  |status|description|
+  |---|---|
+  |200|success|
+  |403|权限不足|
+
+
+
+## 具体请求
+
+### 登录注册
+
+* #### 登陆
+  ```
+  POST /login
+  ```
+  ##### input
+  |Name|Type|Description|
+  |---|---|---|
+  |phone|string|手机号|
+  |password|string|密码|
+  #### response
+  ```
+  {
+  "status":200,
+  "message":"success",
+  }
+  ```
+
+* #### 检测是否登陆
+  ```
+  POST /hasLoggedIn
+  ```
+  #### response
+  ```
+  {
+  "status":200,
+  "message":"success",
+  "data":true //true 已登录  | false 未登录
+  }
+  ```
+
+* #### 注销
+  ```
+  POST /logout
+  ```
+
+* #### 注册
+  ```
+  POST /register
+  ```
+  ##### input
+
+  |Name|Type|Description|
+  |---|---|---|
+  |phone|string|手机号|
+  |nickname|string|昵称|
+  |password|string|密码|
+
+### 用户
+* #### 获取用户信息
+  ```
+  GET /user
+  ```
+
+  **没有id 返回自己的信息**
+  #### response
+  ```
+  {
+  "status":200,
+  "message":"success",
+  "data":{
+    "location":"广州省广州市天河区",
+    "profile":"https://host/**.jpg"，//头像url
+    "nickname":"参天大松",//昵称
+    "phone":"13964561312"   //手机号
+  }
+  }
+  ```
+* #### 修改用户信息
+  ```
+  POST /user
+  ```
+  ##### input
+  要修改的字段
+
+
+### 模型
+一个模型由用户上传照片并创建　属于个人用户
+
+model：
+
+|key|type|Description|
+|---|---|---|
+|id|string|每个模型有自己的id|
+|owner|string|创建者id|
+|name|string|创建者命名的模型名字|
+
+
+location:
+
+|key|type|Description|
+|---|---|---|
+|lng|Number|经度|
+|lat|Number|纬度|
+|effectiveDistance|Number|有效定位距离，在此距离内才被允许签到 单位：米|
+
+
+
+
+* #### 获取模型信息
+  ```
+  GET /model
+  ```
+  ##### parameters
+  |Name|Type|Description|
+  |---|---|---|
+  |id|string|模型id|
+  ##### <a name="get-group-response">response</a>
+
+  ```
+  {
+  "status":200,
+  "message":"success",
+  "data":{
+      "id":"20531",//模型id   用作索引存储位置等等
+      "owner":"参天大松"，//创建者nickname
+      "name":"卢浮宫",//model名字
+      “buildTime”:"2020-12-30"
+  }
+  }
+  ```
+* #### 下载模型文件
+  ```
+  url /models/{modelID}/model/
+  ```
+  ##### response
+  response.data为数组 返回方式同上<a href="#get-group-response">↑↑↑↑↑</a>
+
+* #### 新建model
+  ```
+  POST FormData  /model/create
+  ```
+
+  ##### input
+  |Name|Type|Description|
+  |---|---|---|
+  |uploadFiles|fileList|一系列图片|
+  |name|String|模型名称|
+  ##### response
+  ```
+  {
+  "status":200,
+  "message":"OK",
+  "data":{
+          "id":"20531"
+          “name”:"卢浮宫"}
+  }
+  ```
