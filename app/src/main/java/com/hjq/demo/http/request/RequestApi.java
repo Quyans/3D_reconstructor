@@ -7,5 +7,21 @@ package com.hjq.demo.http.request;
  *    desc   : 请求的api
  */
 public class RequestApi {
-    private String string;
+    public String Login = "/login";
+    public String HasLoggedIn = "/hasLoggedIn";
+    public String Logout = "/logout";
+    public String Register = "/register";
+
+    public String User = "/user";
+    public String Model = "/model";
+    public String CreateModel = "/model/create";
+    private String DownloadModel = "/models/";
+
+    public String getDownloadModel() {
+        return DownloadModel;
+    }
+
+    public void setDownloadModel(String modelID) {
+        this.DownloadModel =this.DownloadModel+ modelID + "/model/";
+    }
 }
