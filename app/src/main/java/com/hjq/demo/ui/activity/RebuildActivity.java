@@ -3,6 +3,7 @@ package com.hjq.demo.ui.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +16,32 @@ import android.widget.LinearLayout;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.http.OkHttp.RequestManager;
-import com.hjq.demo.http.glide.GlideApp;
+
 import com.hjq.demo.ui.adapter.GridViewAdapter;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okio.BufferedSink;
+import okio.Okio;
+import okio.Sink;
 
 public class RebuildActivity extends MyActivity {
 
@@ -35,6 +54,8 @@ public class RebuildActivity extends MyActivity {
     FrameLayout mFrameLayout;
     @BindView(R.id.btn_rebuild_upload)
     Button mBtnUpload;
+    @BindView(R.id.btn_download)
+    Button mBtnDownload;
 
     private List<String> data_all;
 
@@ -43,6 +64,10 @@ public class RebuildActivity extends MyActivity {
         return R.layout.activity_rebuild;
     }
 
+    @Override
+    protected void initData() {
+
+    }
     @Override
     protected void initView() {
 
@@ -105,17 +130,78 @@ public class RebuildActivity extends MyActivity {
                         Log.i(TAG, errorMsg);
                     }
                 } );
-
-
-
 //                Log.i("上传文件1",data_all.get(0));
-
             }
         });
-    }
+        mBtnDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String TAG = "download";
 
-    @Override
-    protected void initData() {
+
+
+                RequestManager requestManager = new RequestManager(RebuildActivity.this);
+                requestManager.downLoadFile("uploadFiles/100_7102.JPG"
+                        , "/sdcard/DCIM/Download_test/"
+                        , new RequestManager.ReqCallBack<Object>() {
+                            @Override
+                            public void onReqSuccess(Object result) throws IOException {
+                                System.out.println("成功");
+                            }
+
+                            @Override
+                            public void onReqFailed(String errorMsg) {
+                                Log.i("下载",errorMsg.toString());
+                            }
+                        }
+                );
+
+
+//                final String url = "http://192.168.1.10:8080/uploadFiles/100_7102.JPG";
+//                final long startTime = System.currentTimeMillis();
+//                Log.i("DOWNLOAD", "startTime=" + startTime);
+//
+//                Request request = new Request.Builder().url(url).build();
+//                new OkHttpClient().newCall(request).enqueue(new Callback() {
+//                    @Override
+//                    public void onFailure(Call call, IOException e) {
+//                        // 下载失败
+//                        e.printStackTrace();
+//                        Log.i("DOWNLOAD", "download failed");
+//                    }
+//
+//                    @Override
+//                    public void onResponse(Call call, Response response) throws IOException {
+//                        Sink sink = null;
+//                        BufferedSink bufferedSink = null;
+//                        try {
+//                            String mSDCardPath= Environment.getExternalStorageDirectory().getAbsolutePath();
+////                            File dest = new File(mSDCardPath,   url.substring(url.lastIndexOf("/") + 1));
+//                            File dest = new File("/sdcard/DCIM/",url.substring(url.lastIndexOf("/") + 1));
+//                            sink = Okio.sink(dest);
+//                            bufferedSink = Okio.buffer(sink);
+//                            bufferedSink.writeAll(response.body().source());
+//
+//                            bufferedSink.close();
+//                            Log.i("DOWNLOAD", "download success");
+//                            Log.i("DOWNLOAD", "totalTime=" + (System.currentTimeMillis() - startTime));
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                            Log.i("DOWNLOAD", "download failed");
+//                        } finally {
+//                            if (bufferedSink != null) {
+//                                bufferedSink.close();
+//                            }
+//
+//                        }
+//
+//
+//                    }
+//                });
+            };
+
+    });
+
 
     }
 }
