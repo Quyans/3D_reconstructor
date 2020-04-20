@@ -33,7 +33,7 @@ public class RequestManager {
     private static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");//mdiatype 这个需要和服务端保持一致
     private static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("text/x-markdown; charset=utf-8");//mdiatype 这个需要和服务端保持一致
     private static final String TAG = RequestManager.class.getSimpleName();
-    private static final String BASE_URL = "http://192.168.1.10:8080/";//请求接口根地址
+    private static final String BASE_URL = "http://192.168.101.7:8080";//请求接口根地址
     private static volatile RequestManager mInstance;//单利引用
     public static final int TYPE_GET = 0;//get请求
     public static final int TYPE_POST_JSON = 1;//post请求参数为json
@@ -42,7 +42,7 @@ public class RequestManager {
     private Handler okHttpHandler;//全局处理子线程和M主线程通信
 
     private static final MediaType MEDIA_OBJECT_STREAM = MediaType.parse("application/octet-stream");
-    private static  String upload_head = "http://192.168.1.10:8080/";
+    private static  String upload_head = "http://192.168.101.7:8080";
 
 
     public interface ReqCallBack<T> {

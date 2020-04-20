@@ -8,6 +8,8 @@ package com.hjq.demo.other;
 public final class IntentKey {
 
     // 常用相关
+    /** 上传基本api*/
+    public static final String baseAPI = "/api";
 
     /** id */
     public static final String ID = "id";

@@ -17,6 +17,7 @@ import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.http.OkHttp.RequestManager;
 
+import com.hjq.demo.other.IntentKey;
 import com.hjq.demo.ui.adapter.GridViewAdapter;
 
 import java.io.ByteArrayInputStream;
@@ -76,7 +77,7 @@ public class RebuildActivity extends MyActivity {
         mBtnSelectImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PhotoActivity.start(getActivity(),9, new PhotoActivity.OnPhotoSelectListener() {
+                PhotoActivity.start(getActivity(),20, new PhotoActivity.OnPhotoSelectListener() {
 
                     @Override
                     public void onSelected(List<String> data) {
@@ -106,7 +107,8 @@ public class RebuildActivity extends MyActivity {
         mBtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String actionUrl = "batch/upload";
+                String actionUrl = IntentKey.baseAPI +"/model/create";
+//                String actionUrl = "/batch/upload";
                 String TAG = "Upload";
                 RequestManager requestManager = new RequestManager(RebuildActivity.this);
                 HashMap hashMap = new HashMap();
@@ -116,6 +118,9 @@ public class RebuildActivity extends MyActivity {
                     System.out.println(file.getName());
                     hashMap.put(file.getName(),file);
                 }
+
+                //这里之后添加了textview再动态修改
+                hashMap.put("name","第一个模型");
 
                 requestManager.upLoadFile(actionUrl,hashMap,new RequestManager.ReqCallBack(){
                     @Override
