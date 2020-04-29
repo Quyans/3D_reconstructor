@@ -107,8 +107,7 @@ public class RebuildActivity extends MyActivity {
         mBtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String actionUrl = IntentKey.baseAPI +"/model/create";
-//                String actionUrl = "/batch/upload";
+                String actionUrl = IntentKey.CreateModel_api;
                 String TAG = "Upload";
                 RequestManager requestManager = new RequestManager(RebuildActivity.this);
                 HashMap hashMap = new HashMap();

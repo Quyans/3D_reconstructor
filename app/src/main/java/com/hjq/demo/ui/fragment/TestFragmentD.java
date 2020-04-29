@@ -96,7 +96,7 @@ public final class TestFragmentD extends MyFragment<HomeActivity> {
                 startActivity(GuideActivity.class);
                 break;
             case R.id.btn_test_browser:
-                BrowserActivity.start(getAttachActivity(), "https://github.com/getActivity");
+                BrowserActivity.start(getAttachActivity(), "http://www.wjceo.com/blog/threejs/2018-03-22/133.html");
                 break;
             case R.id.btn_test_image:
                 ArrayList<String> images = new ArrayList<>();

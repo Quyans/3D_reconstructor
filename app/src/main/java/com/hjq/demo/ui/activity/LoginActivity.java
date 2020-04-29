@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
@@ -18,10 +19,13 @@ import com.hjq.demo.aop.DebugLog;
 import com.hjq.demo.aop.SingleClick;
 import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.helper.InputTextHelper;
+import com.hjq.demo.http.OkHttp.RequestManager;
 import com.hjq.demo.http.glide.GlideApp;
 import com.hjq.demo.http.model.HttpData;
 import com.hjq.demo.http.request.LoginApi;
 import com.hjq.demo.http.response.LoginBean;
+import com.hjq.demo.mojo.User;
+import com.hjq.demo.other.GlobalData;
 import com.hjq.demo.other.IntentKey;
 import com.hjq.demo.other.KeyboardWatcher;
 import com.hjq.demo.wxapi.WXEntryActivity;
@@ -31,6 +35,12 @@ import com.hjq.http.listener.HttpCallback;
 import com.hjq.umeng.Platform;
 import com.hjq.umeng.UmengClient;
 import com.hjq.umeng.UmengLogin;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 import butterknife.BindView;
 
@@ -155,12 +165,14 @@ public final class LoginActivity extends MyActivity
                     return;
                 }
 
-                if (true) {
-                    startActivity(HomeActivity.class);
-                    finish();
-                    return;
-                }
+//                if (true) {
+//                    startActivity(HomeActivity.class);
+//                    finish();
+//                    return;
+//                }
 
+
+                /*
                 EasyHttp.post(this)
                         .api(new LoginApi()
                         .setPhone(mPhoneView.getText().toString())
@@ -177,6 +189,48 @@ public final class LoginActivity extends MyActivity
                                 finish();
                             }
                         });
+                        //sffsfsaffsf
+                 */
+
+
+                HashMap hashMap = new HashMap();
+
+                hashMap.put("phone", mPhoneView.getText().toString());
+                hashMap.put("password",mPasswordView.getText().toString());
+                RequestManager requestManager = new RequestManager(LoginActivity.this);
+                requestManager.requestAsyn(IntentKey.Login_api, 1, hashMap, new RequestManager.ReqCallBack<Object>() {
+                    @Override
+                    public void onReqSuccess(Object result) throws IOException, JSONException {
+                        JSONObject jsonObject = new JSONObject(result.toString());
+                        int status = jsonObject.getInt("status");
+
+                        if (status==200){
+
+                            JSONObject data = jsonObject.getJSONObject("data");
+                            Log.d("Login",result.toString());
+                            toast("登录成功");
+
+                            //设置全局变量登录状态
+                            GlobalData.setUser(new User(data.getString("nickname"),data.getString("phone")));
+
+                            // 跳转到主页
+                            startActivity(HomeActivity.class);
+                            finish();
+                        }
+                        else {
+                            toast(jsonObject.getString("message"));
+                        }
+
+
+
+                    }
+
+                    @Override
+                    public void onReqFailed(String errorMsg) {
+                        Log.d("Register",errorMsg);
+                    }
+                });
+
                 break;
             case R.id.iv_login_qq:
             case R.id.iv_login_wx:

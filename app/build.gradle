@@ -15,6 +15,14 @@ android {
         // 无痛修改包名：https://www.jianshu.com/p/17327e191d2e
         applicationId "com.hjq.demo"
 
+
+        vectorDrawables.useSupportLibrary true
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
         // 仅保留中文语种的资源
         resConfig 'zh'
 
@@ -38,6 +46,9 @@ android {
 
         // 混淆配置
         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-app.pro'
+
+        //
+        multiDexEnabled true
     }
 
     // APK 签名的那些事：https://www.jianshu.com/p/a1f8e5896aa2
@@ -211,4 +222,14 @@ dependencies {
     // 对象存储：https://github.com/leavesC/DoKV
     // 数据注入：https://github.com/JumeiRdGroup/Parceler
 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-alpha4', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.3.1'
+    implementation 'com.google.vr:sdk-base:1.190.0'
+    testImplementation 'junit:junit:4.12'
+
+    implementation 'com.android.support:multidex:1.0.3'
 }

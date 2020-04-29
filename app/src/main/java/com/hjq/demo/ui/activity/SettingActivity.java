@@ -90,7 +90,7 @@ public final class SettingActivity extends MyActivity
                 }
                 break;
             case R.id.sb_setting_agreement:
-                BrowserActivity.start(this, "https://github.com/getActivity/Donate");
+                BrowserActivity.start(this, "https://www.baidu.com");
                 break;
             case R.id.sb_setting_about:
                 startActivity(AboutActivity.class);

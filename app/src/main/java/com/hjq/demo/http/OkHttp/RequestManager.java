@@ -5,6 +5,8 @@ import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 
+import org.json.JSONException;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -49,7 +51,7 @@ public class RequestManager {
         /**
          * 响应成功
          */
-        void onReqSuccess(T result) throws IOException;
+        void onReqSuccess(T result) throws IOException, JSONException;
 
         /**
          * 响应失败
@@ -70,7 +72,7 @@ public class RequestManager {
                 if (callBack != null) {
                     try {
                         callBack.onReqSuccess(result);
-                    } catch (IOException e) {
+                    } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
                 }
@@ -322,6 +324,7 @@ public class RequestManager {
                         Log.e(TAG, "response ----->" + string);
                         successCallBack((T) string, callBack);
                     } else {
+                        Log.e("错误信息",response.toString());
                         failedCallBack("服务器错误", callBack);
                     }
                 }
@@ -371,6 +374,7 @@ public class RequestManager {
                         Log.e(TAG, "response ----->" + string);
                         successCallBack((T) string, callBack);
                     } else {
+                        Log.e("错误信息",response.toString());
                         failedCallBack("服务器错误", callBack);
                     }
                 }
@@ -414,6 +418,7 @@ public class RequestManager {
                         Log.e(TAG, "response ----->" + string);
                         successCallBack((T) string, callBack);
                     } else {
+                        Log.e("错误信息",response.toString());
                         failedCallBack("服务器错误", callBack);
                     }
                 }

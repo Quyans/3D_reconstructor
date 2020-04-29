@@ -15,6 +15,7 @@ import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.common.MyFragment;
 import com.hjq.demo.helper.ActivityStackManager;
 import com.hjq.demo.helper.DoubleClickHelper;
+import com.hjq.demo.common.MyApplication;
 import com.hjq.demo.other.KeyboardWatcher;
 import com.hjq.demo.ui.fragment.TestFragmentA;
 import com.hjq.demo.ui.fragment.TestFragmentB;
@@ -22,6 +23,7 @@ import com.hjq.demo.ui.fragment.TestFragmentC;
 import com.hjq.demo.ui.fragment.TestFragmentD;
 
 import butterknife.BindView;
+import okhttp3.Call;
 
 /**
  *    author : Android 轮子哥
@@ -32,7 +34,7 @@ import butterknife.BindView;
 public final class HomeActivity extends MyActivity
         implements KeyboardWatcher.SoftKeyboardStateListener,
         BottomNavigationView.OnNavigationItemSelectedListener{
-
+    private MyApplication app;
     @BindView(R.id.vp_home_pager)
     ViewPager mViewPager;
     @BindView(R.id.bv_home_navigation)
@@ -57,8 +59,12 @@ public final class HomeActivity extends MyActivity
                 .setListener(this);
     }
 
+
+
     @Override
     protected void initData() {
+
+
         mPagerAdapter = new BaseFragmentAdapter<>(this);
         mPagerAdapter.addFragment(TestFragmentA.newInstance());
         mPagerAdapter.addFragment(TestFragmentB.newInstance());

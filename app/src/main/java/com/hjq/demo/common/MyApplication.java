@@ -7,6 +7,8 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
 import com.billy.android.swipe.SmartSwipeBack;
 import com.hjq.bar.TitleBar;
 import com.hjq.bar.style.TitleBarLightStyle;
@@ -16,6 +18,8 @@ import com.hjq.demo.helper.ActivityStackManager;
 import com.hjq.demo.http.model.RequestHandler;
 import com.hjq.demo.http.server.ReleaseServer;
 import com.hjq.demo.http.server.TestServer;
+import com.hjq.demo.modelViewer.Model;
+
 import com.hjq.demo.other.AppConfig;
 import com.hjq.demo.ui.activity.CrashActivity;
 import com.hjq.demo.ui.activity.HomeActivity;
@@ -39,10 +43,32 @@ import okhttp3.OkHttpClient;
  */
 public final class MyApplication extends Application {
 
+    private static MyApplication INSTANCE;
+    // Store the current model globally, so that we don't have to re-decode it upon
+    // relaunching the main or VR activities.
+    // TODO: handle this a bit better.
+    @Nullable
+    private Model currentModel;
+
     @Override
     public void onCreate() {
         super.onCreate();
         initSDK(this);
+        INSTANCE = this;
+        System.out.println(this);
+    }
+
+    public static MyApplication getInstance() {
+        return INSTANCE;
+    }
+
+    @Nullable
+    public Model getCurrentModel() {
+        return currentModel;
+    }
+
+    public void setCurrentModel(@Nullable Model model) {
+        currentModel = model;
     }
 
     /**

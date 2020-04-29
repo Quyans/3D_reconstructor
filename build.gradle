@@ -10,6 +10,7 @@ buildscript {
         // AOP 开发插件：https://mvnrepository.com/artifact/org.aspectj/aspectjtools
         classpath 'org.aspectj:aspectjtools:1.9.5'
         // AOP 配置插件：https://github.com/xuexiangjys/XAOP
+        //
         classpath 'com.github.xuexiangjys.XAOP:xaop-plugin:1.0.5'
     }
 }

@@ -20,4 +20,10 @@
     <!-- 对话框取消按钮文本颜色 -->
     <color name="colorCancel">#F44336</color>
 
+<!--    <color name="colorPrimary">#3F51B5</color>-->
+<!--    <color name="colorPrimaryDark">#303F9F</color>-->
+    <color name="colorPrimaryLight">#5F71B5</color>
+<!--    <color name="colorAccent">#FF4081</color>-->
+    <color name="colorWindowBackground">#333</color>
+
 </resources>

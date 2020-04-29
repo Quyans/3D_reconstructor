@@ -9,7 +9,17 @@ public final class IntentKey {
 
     // 常用相关
     /** 上传基本api*/
-    public static final String baseAPI = "/api";
+    public static final String baseAPI = "api";
+    public static final String Login_api = baseAPI + "/login";
+    public static final String HasLoggedIn_api = baseAPI + "hasLoggedIn";
+    public static final String Logout_api = baseAPI + "/logout";
+    public static final String Register_api = baseAPI + "/register";
+    public static final String User_api = baseAPI + "/user";
+    public static final String ModelInfo_api = baseAPI + "/model";
+    public static final String CreateModel_api = baseAPI + "/model/create";
+
+
+
 
     /** id */
     public static final String ID = "id";

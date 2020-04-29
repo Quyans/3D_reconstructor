@@ -81,6 +81,18 @@
 
         <View style="@style/HorizontalLineStyle" />
 
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_register_nickname"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/common_nickname"
+            android:inputType="text"
+            android:singleLine="true" />
+
+        <View style="@style/HorizontalLineStyle" />
+
         <com.hjq.widget.view.PasswordEditText
             android:id="@+id/et_register_password1"
             style="@style/EditTextStyle"

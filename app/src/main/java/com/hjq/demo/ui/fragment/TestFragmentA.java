@@ -1,19 +1,23 @@
 package com.hjq.demo.ui.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyFragment;
+
 import com.hjq.demo.ui.activity.AddComActivity;
 import com.hjq.demo.ui.activity.HomeActivity;
+import com.hjq.demo.ui.activity.ModelViewActivity;
 import com.hjq.demo.ui.activity.RebuildActivity;
 import com.hjq.demo.widget.XCollapsingToolbarLayout;
 
@@ -44,6 +48,8 @@ public final class TestFragmentA extends MyFragment<HomeActivity>
     //访问文件Activity页面
     @BindView(R.id.btn_add)
     Button mbtnAdd;
+    @BindView(R.id.btn_showModel)
+    Button mbtnShowModel;
 
     public static TestFragmentA newInstance() {
         return new TestFragmentA();
@@ -75,7 +81,20 @@ public final class TestFragmentA extends MyFragment<HomeActivity>
                 startActivity(intent);
             }
         });
+        mbtnShowModel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ModelViewActivity.class);
+                startActivity(intent);
+            }
+        });
 //
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
