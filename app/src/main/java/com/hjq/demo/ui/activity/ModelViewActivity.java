@@ -23,11 +23,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.hjq.demo.R;
+import com.hjq.demo.common.MyActivity;
 import com.hjq.demo.common.MyApplication;
 import com.hjq.demo.modelViewer.Model;
 import com.hjq.demo.modelViewer.ModelSurfaceView;
@@ -37,6 +39,7 @@ import com.hjq.demo.modelViewer.obj.ObjModel;
 import com.hjq.demo.modelViewer.ply.PlyModel;
 import com.hjq.demo.modelViewer.stl.StlModel;
 import com.hjq.demo.modelViewer.util.Util;
+import com.hjq.demo.ui.popup.MenuPopup;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -46,7 +49,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class ModelViewActivity extends AppCompatActivity {
+public class ModelViewActivity extends MyActivity {
     private static final int READ_PERMISSION_REQUEST = 100;
     private static final int OPEN_DOCUMENT_REQUEST = 101;
 
@@ -62,11 +65,25 @@ public class ModelViewActivity extends AppCompatActivity {
     private View vrButton;
 
 
+    private Button mBtnLoadLocal,mBtnLoadExample;
+
+
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_model_view);
+//
+//
+//
+//    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_model_view);
+    protected int getLayoutId() {
+        return R.layout.activity_model_view;
+    }
+
+    @Override
+    protected void initView() {
         app = MyApplication.getInstance();
 
         containerView = findViewById(R.id.container_view);
@@ -74,6 +91,24 @@ public class ModelViewActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         progressBar = findViewById(R.id.model_progress_bar);
         vrButton = findViewById(R.id.vr_fab);
+//        mBtnLoadExample = findViewById(R.id.btn_loadExample);
+//        mBtnLoadLocal = findViewById(R.id.btn_loadLocalModel);
+
+//        mBtnLoadLocal.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                ();
+//            }
+//        });
+//
+//        mBtnLoadExample.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                loadSampleModel();
+//            }
+//        });
 
         vrButton.setOnClickListener((View v) -> startVrActivity());
 
@@ -86,9 +121,17 @@ public class ModelViewActivity extends AppCompatActivity {
             return insets.consumeSystemWindowInsets();
         });
 
-        if (getIntent().getData() != null && savedInstanceState == null) {
+//        if (getIntent().getData() != null && savedInstanceState == null) {
+//            beginLoadModel(getIntent().getData());
+//        }
+        if (getIntent().getData() != null) {
             beginLoadModel(getIntent().getData());
         }
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     @Override
@@ -311,5 +354,25 @@ public class ModelViewActivity extends AppCompatActivity {
                 .setMessage("this is log")
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
+    }
+
+    @Override
+    public void onRightClick(View v) {
+        // 菜单弹窗
+        new MenuPopup.Builder(this)
+                .setList("加载本地模型", "加载样例")
+//                .setListener((MenuPopup.OnListener<String>) (popupWindow, position, s) -> toast(s))
+                .setListener((MenuPopup.OnListener<String>) (popupWindow, position, s) -> {
+
+                    if (s=="加载本地模型"){
+
+                        checkReadPermissionThenOpen();
+                    }else if (s == "加载样例"){
+
+                        loadSampleModel();
+                    }
+
+                })
+                .showAsDropDown(v);
     }
 }

@@ -140,6 +140,36 @@
             android:name=".ui.activity.StatusActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop" />
+        <activity
+            android:name=".ui.activity.AllModelList"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop" />  <!-- 模型列表类 -->
+
+        <activity
+            android:name=".modelViewer.gvr.ModelGvrActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:enableVrMode="@string/gvr_vr_mode_component"
+            android:resizeableActivity="false">
+            <!-- The VR icon to be used in Daydream Home comes in two parts:
+                 a foreground icon and a background icon.  -->
+            <meta-data android:name="com.google.android.vr.icon"
+                android:resource="@drawable/vr_icon" />
+            <meta-data android:name="com.google.android.vr.icon_background"
+                android:resource="@drawable/vr_icon_background" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.google.intent.category.CARDBOARD" />
+
+                <!-- The DAYDREAM category should only be declared by Activities that are Daydream
+                     compatible. Daydream compatible apps should typically use the Daydream
+                     controller APIs directly, however in this sample app we instead rely on
+                     Cardboard trigger emulation. -->
+                <category android:name="com.google.intent.category.DAYDREAM" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

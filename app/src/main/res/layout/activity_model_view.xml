@@ -1,29 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorWindowBackground"
-    tools:context="com.hjq.demo.ui.activity.ModelViewActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ProgressBar
-        android:id="@+id/model_progress_bar"
-        android:layout_width="wrap_content"
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_loadLocalModel"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+
+<!--                android:text="加载本地模型"/>-->
+<!--            <Button-->
+<!--                android:id="@+id/btn_loadExample"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+
+<!--                android:text="加载例子"/>-->
+
+<!--        </LinearLayout>-->
+
+    <com.hjq.bar.TitleBar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_gravity="top|end"/>
+        app:rightIcon="@drawable/ic_add_black"
+        app:title="模型展示" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/vr_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        app:backgroundTint="@color/colorPrimaryLight"
-        app:useCompatPadding="true"
-        app:tint="@android:color/white"
-        app:srcCompat="@drawable/ic_google_cardboard"/>
+    <FrameLayout
 
-</FrameLayout>
+        android:id="@+id/container_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWindowBackground"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.hjq.demo.ui.activity.ModelViewActivity">
+
+
+
+        <ProgressBar
+            android:id="@+id/model_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+
+            android:layout_gravity="top|end"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/vr_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:backgroundTint="@color/colorPrimaryLight"
+            app:useCompatPadding="true"
+            app:tint="@android:color/white"
+            app:srcCompat="@drawable/ic_google_cardboard"/>
+
+    </FrameLayout>
+</LinearLayout>
+

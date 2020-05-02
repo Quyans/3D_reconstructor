@@ -3,7 +3,6 @@ package com.hjq.demo.ui.activity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
@@ -19,11 +18,11 @@ import com.hjq.demo.common.MyApplication;
 import com.hjq.demo.other.KeyboardWatcher;
 import com.hjq.demo.ui.fragment.TestFragmentA;
 import com.hjq.demo.ui.fragment.TestFragmentB;
+import com.hjq.demo.ui.fragment.TestFragmentB_bak;
 import com.hjq.demo.ui.fragment.TestFragmentC;
 import com.hjq.demo.ui.fragment.TestFragmentD;
 
 import butterknife.BindView;
-import okhttp3.Call;
 
 /**
  *    author : Android 轮子哥

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hjq.bar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="模型列表" />
+
+    <com.hjq.demo.widget.HintLayout
+        android:id="@+id/hl_status_hint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+
+            android:id="@+id/rl_status_refresh"
+            style="@style/RefreshLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <GridView
+                    android:id="@+id/gv_modelList"
+                    android:layout_width="match_parent"
+                    android:numColumns="3"
+                    android:horizontalSpacing="10dp"
+                    android:verticalSpacing="10dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    </com.hjq.demo.widget.HintLayout>
+
+</LinearLayout>

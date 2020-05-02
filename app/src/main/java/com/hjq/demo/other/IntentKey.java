@@ -17,7 +17,7 @@ public final class IntentKey {
     public static final String User_api = baseAPI + "/user";
     public static final String ModelInfo_api = baseAPI + "/model";
     public static final String CreateModel_api = baseAPI + "/model/create";
-
+    public static final String AllModelInfo_api = baseAPI + "/allmodel";
 
 
 

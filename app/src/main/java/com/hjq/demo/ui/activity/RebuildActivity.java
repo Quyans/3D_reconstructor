@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
@@ -126,6 +127,7 @@ public class RebuildActivity extends MyActivity {
                     public void onReqSuccess(Object result) {
                         Log.i(TAG, "success!!!!");
                         Log.i(TAG, result.toString());
+                        toast("上传成功");
                     }
 
                     @Override
